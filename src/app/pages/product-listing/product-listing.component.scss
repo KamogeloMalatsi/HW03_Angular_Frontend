@@ -1,0 +1,60 @@
+.product-listing-container {
+    max-width: 98%; // Increase the width to fill the page more
+    margin: 20px auto; // Adjust the margin for a more spacious look
+    padding: 20px;
+    background-color: #fff; // Optional: Add background color for better contrast
+    border-radius: 8px; // Optional: Add border radius for a smoother look
+    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.2); // Optional: Add shadow for elevation
+  
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .filter {
+      margin-bottom: 20px;
+      text-align: center;
+  
+      input {
+        width: 300px;
+      }
+    }
+  
+    .table-container {
+      overflow-x: auto;
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+  
+      th, td {
+        padding: 16px;
+        text-align: left;
+      }
+  
+      .product-image {
+        width: 150px; // Increase the size of the image for better visibility
+        height: auto;
+      }
+  
+      .description-cell, .name-cell {
+        max-width: 300px; // Adjust the width for better layout
+        white-space: normal; // Allow text to wrap
+        word-wrap: break-word; // Break long words to wrap within the column
+      }
+  
+      .description-cell {
+        max-width: 300px; // Adjust the width of the description column for a better layout
+      }
+  
+      .name-cell {
+        max-width: 200px; // Adjust the width of the name column for a better layout
+      }
+    }
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.2);
+  }
+  

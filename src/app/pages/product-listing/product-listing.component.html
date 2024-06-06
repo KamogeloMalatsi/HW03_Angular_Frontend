@@ -1,0 +1,40 @@
+<div class="product-listing-container">
+    <h1><b>Product Listing</b></h1>
+    <div class="filter">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </div>
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let element">
+            <img [src]="'data:image/png;base64,' + element.image" alt="Product Image" class="product-image">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let element" class="name-cell">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+          <td mat-cell *matCellDef="let element">{{ element.price | currency }}</td>
+        </ng-container>
+        <ng-container matColumnDef="brand">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+          <td mat-cell *matCellDef="let element">{{ element.brandName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="productType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Type</th>
+          <td mat-cell *matCellDef="let element">{{ element.productTypeName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let element" class="description-cell">{{ element.description }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  

@@ -1,0 +1,29 @@
+<div class="report-container">
+  <h1><b>Product Reports</b></h1>
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <canvas id="brandChart"></canvas>
+    </div>
+    <div class="col-md-6 mb-4">
+      <canvas id="productTypeChart"></canvas>
+    </div>
+  </div>
+  <h1><b>Active Products Report</b></h1>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let brand of activeProducts">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size: 18px; font-weight: bold;">
+          {{ brand.brandName }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngFor="let productType of brand.productTypes">
+        <h3><b>{{ productType.productTypeName }}</b></h3>
+        <ul>
+          <li *ngFor="let product of productType.products" style="padding-left: 20px;">
+            {{ product.name }} - {{ product.price | currency:'USD':true:'1.2-2' }}
+          </li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

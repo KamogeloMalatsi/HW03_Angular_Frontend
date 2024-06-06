@@ -1,0 +1,60 @@
+<div class="add-product-container">
+    <h1><b>Add Product</b></h1>
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name" [ngClass]="{ 'invalid-label': f['name'].touched && f['name'].invalid }">Name</label>
+          <input type="text" id="name" formControlName="name" [ngClass]="{ 'invalid-input': f['name'].touched && f['name'].invalid }">
+          <div *ngIf="f['name'].touched && f['name'].invalid" class="error">
+            <div *ngIf="f['name'].errors?.['required']">Name is required.</div>
+            <div *ngIf="f['name'].errors?.['minlength']">Name must be at least 5 characters long.</div>
+            <div *ngIf="f['name'].errors?.['maxlength']">Name cannot be more than 50 characters long.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price" [ngClass]="{ 'invalid-label': f['price'].touched && f['price'].invalid }">Price</label>
+          <input type="text" id="price" formControlName="price" [ngClass]="{ 'invalid-input': f['price'].touched && f['price'].invalid }">
+          <div *ngIf="f['price'].touched && f['price'].invalid" class="error">
+            <div *ngIf="f['price'].errors?.['required']">Price is required.</div>
+            <div *ngIf="f['price'].errors?.['decimal']">Price must be a valid decimal number with up to two decimal places.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description" [ngClass]="{ 'invalid-label': f['description'].touched && f['description'].invalid }">Description</label>
+        <textarea id="description" formControlName="description" [ngClass]="{ 'invalid-input': f['description'].touched && f['description'].invalid }"></textarea>
+        <div *ngIf="f['description'].touched && f['description'].invalid" class="error">
+          <div *ngIf="f['description'].errors?.['required']">Description is required.</div>
+          <div *ngIf="f['description'].errors?.['minlength']">Description must be at least 10 characters long.</div>
+          <div *ngIf="f['description'].errors?.['maxlength']">Description cannot be more than 300 characters long.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="brand" [ngClass]="{ 'invalid-label': f['brand'].touched && f['brand'].invalid }">Brand</label>
+          <select id="brand" formControlName="brand" [ngClass]="{ 'invalid-input': f['brand'].touched && f['brand'].invalid }">
+            <option *ngFor="let brand of brands" [value]="brand.brandId">{{ brand.name }}</option>
+          </select>
+          <div *ngIf="f['brand'].touched && f['brand'].invalid" class="error">Brand is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="productType" [ngClass]="{ 'invalid-label': f['productType'].touched && f['productType'].invalid }">Product Type</label>
+          <select id="productType" formControlName="productType" [ngClass]="{ 'invalid-input': f['productType'].touched && f['productType'].invalid }">
+            <option *ngFor="let productType of productTypes" [value]="productType.productTypeId">{{ productType.name }}</option>
+          </select>
+          <div *ngIf="f['productType'].touched && f['productType'].invalid" class="error">Product type is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image" [ngClass]="{ 'invalid-label': f['image'].touched && f['image'].invalid }">Image</label>
+        <input type="file" id="image" (change)="onImageChange($event)" [ngClass]="{ 'invalid-input': f['image'].touched && f['image'].invalid }">
+        <div *ngIf="f['image'].touched && f['image'].invalid" class="error">Image is required.</div>
+        <div *ngIf="errorMessage === 'Only images are allowed.'" class="error">{{ errorMessage }}</div>
+        <div *ngIf="imagePreview" class="image-preview">
+          <img [src]="imagePreview" alt="Image Preview">
+        </div>
+      </div>
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+  
